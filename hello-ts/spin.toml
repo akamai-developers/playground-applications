@@ -1,0 +1,25 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Hello TypeScript"
+name = "hello-ts"
+version = "0.1.0"
+
+[[trigger.http]]
+route = "/..."
+component = "hello-ts"
+
+[component.hello-ts]
+source = "dist/hello-ts.wasm"
+exclude_files = ["**/node_modules"]
+allowed_outbound_hosts = [
+  # "tcp://127.0.0.1:*", # Uncomment this line to while using the StarlingMonkey Debugger
+]
+
+[component.hello-ts.build]
+command = ["npm install", "npm run build"]
+watch = ["src/**/*.ts"]
+
