@@ -1,0 +1,18 @@
+[package]
+name = "html-rewrite"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "HTML Rewrite Example"
+version = "0.1.0"
+rust-version = "1.93"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1"
+futures = "0.3"
+lol_html = "3.0.3"
+spin-sdk = "7.0.0"
+
+[workspace]
