@@ -1,0 +1,25 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Hello JavaScript"
+name = "hello-js"
+version = "0.1.0"
+
+[[trigger.http]]
+route = "/..."
+component = "hello-js"
+
+[component.hello-js]
+source = "dist/hello-js.wasm"
+exclude_files = ["**/node_modules"]
+allowed_outbound_hosts = [
+  # "tcp://127.0.0.1:*", # Uncomment this line to while using the StarlingMonkey Debugger
+]
+
+[component.hello-js.build]
+command = ["npm install", "npm run build"]
+watch = ["src/**/*.js"]
+
