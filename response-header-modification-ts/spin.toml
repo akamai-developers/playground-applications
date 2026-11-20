@@ -1,0 +1,28 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Proxy an origin and modify its response headers"
+name = "response-header-modification-ts"
+version = "0.1.0"
+
+[variables]
+origin = { default = "https://swapi.dev" }
+
+[[trigger.http]]
+route = "/..."
+component = "response-header-modification-ts"
+
+[component.response-header-modification-ts]
+source = "dist/response-header-modification-ts.wasm"
+exclude_files = ["**/node_modules"]
+allowed_outbound_hosts = ["https://swapi.dev"]
+
+[component.response-header-modification-ts.variables]
+origin = "{{ origin }}"
+
+[component.response-header-modification-ts.build]
+command = ["npm install", "npm run build"]
+watch = ["src/**/*.ts"]

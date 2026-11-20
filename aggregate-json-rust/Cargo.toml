@@ -1,0 +1,19 @@
+[package]
+name = "aggregate-json-rust"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Aggregate JSON from two concurrent upstream requests"
+version = "0.1.0"
+rust-version = "1.93"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1"
+futures = "0.3"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+spin-sdk = "7.0.0"
+
+[workspace]

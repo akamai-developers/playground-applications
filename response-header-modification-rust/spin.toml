@@ -1,0 +1,27 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "response-header-modification-rust"
+version = "0.1.0"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Proxy an origin and modify its response headers"
+
+[variables]
+origin = { default = "https://swapi.dev" }
+
+[[trigger.http]]
+route = "/..."
+component = "response-header-modification-rust"
+
+[component.response-header-modification-rust]
+source = "target/wasm32-wasip2/release/response_header_modification_rust.wasm"
+allowed_outbound_hosts = ["https://swapi.dev"]
+
+[component.response-header-modification-rust.variables]
+origin = "{{ origin }}"
+
+[component.response-header-modification-rust.build]
+command = "cargo build --target wasm32-wasip2 --release"
+watch = ["src/**/*.rs", "Cargo.toml"]

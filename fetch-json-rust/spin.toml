@@ -1,0 +1,21 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "fetch-json-rust"
+version = "0.1.0"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Fetch JSON from an upstream API"
+
+[[trigger.http]]
+route = "/..."
+component = "fetch-json-rust"
+
+[component.fetch-json-rust]
+source = "target/wasm32-wasip2/release/fetch_json_rust.wasm"
+allowed_outbound_hosts = ["https://swapi.dev"]
+
+[component.fetch-json-rust.build]
+command = "cargo build --target wasm32-wasip2 --release"
+watch = ["src/**/*.rs", "Cargo.toml"]

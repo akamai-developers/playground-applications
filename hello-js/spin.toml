@@ -15,9 +15,7 @@ component = "hello-js"
 [component.hello-js]
 source = "dist/hello-js.wasm"
 exclude_files = ["**/node_modules"]
-allowed_outbound_hosts = [
-  # "tcp://127.0.0.1:*", # Uncomment this line to while using the StarlingMonkey Debugger
-]
+allowed_outbound_hosts = []
 
 [component.hello-js.build]
 command = ["npm install", "npm run build"]

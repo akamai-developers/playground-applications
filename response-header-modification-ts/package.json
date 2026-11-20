@@ -1,0 +1,25 @@
+{
+  "name": "response-header-modification-ts",
+  "version": "1.0.0",
+  "description": "Proxy an origin and modify its response headers",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --noEmit && node build.mjs",
+    "build:debug": "tsc --noEmit && node build.mjs --debug",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mkdirp": "^3.0.1",
+    "ts-loader": "^9.6.2",
+    "typescript": "^7.0.2",
+    "esbuild": "^0.25.8",
+    "@bytecodealliance/jco": "^1.17.6"
+  },
+  "dependencies": {
+    "@spinframework/spin-variables": "^1.0.1",
+    "@spinframework/wasi-http-proxy": "^2.0.0"
+  }
+}

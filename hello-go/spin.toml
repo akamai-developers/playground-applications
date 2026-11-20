@@ -15,6 +15,7 @@ component = "hello-go"
 [component.hello-go]
 source = "main.wasm"
 allowed_outbound_hosts = []
+
 [component.hello-go.build]
 command = "go tool componentize-go build"
 watch = ["**/*.go", "go.mod"]

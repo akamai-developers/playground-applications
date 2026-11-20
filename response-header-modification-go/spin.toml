@@ -1,0 +1,27 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "response-header-modification-go"
+version = "0.1.0"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Proxy an origin and modify its response headers"
+
+[variables]
+origin = { default = "https://swapi.dev" }
+
+[[trigger.http]]
+route = "/..."
+component = "response-header-modification-go"
+
+[component.response-header-modification-go]
+source = "main.wasm"
+allowed_outbound_hosts = ["https://swapi.dev"]
+
+[component.response-header-modification-go.variables]
+origin = "{{ origin }}"
+
+[component.response-header-modification-go.build]
+command = "go tool componentize-go build"
+watch = ["**/*.go", "go.mod"]

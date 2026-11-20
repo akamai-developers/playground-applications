@@ -1,0 +1,21 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "fetch-json-go"
+version = "0.1.0"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Fetch JSON from an upstream API"
+
+[[trigger.http]]
+route = "/..."
+component = "fetch-json-go"
+
+[component.fetch-json-go]
+source = "main.wasm"
+allowed_outbound_hosts = ["https://swapi.dev"]
+
+[component.fetch-json-go.build]
+command = "go tool componentize-go build"
+watch = ["**/*.go", "go.mod"]

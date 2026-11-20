@@ -1,0 +1,21 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "aggregate-json-rust"
+version = "0.1.0"
+authors = ["Thorsten Hans <thans@akamai.com>"]
+description = "Aggregate JSON from two concurrent upstream requests"
+
+[[trigger.http]]
+route = "/..."
+component = "aggregate-json-rust"
+
+[component.aggregate-json-rust]
+source = "target/wasm32-wasip2/release/aggregate_json_rust.wasm"
+allowed_outbound_hosts = ["https://swapi.dev"]
+
+[component.aggregate-json-rust.build]
+command = "cargo build --target wasm32-wasip2 --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
